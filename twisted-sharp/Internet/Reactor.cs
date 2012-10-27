@@ -73,7 +73,7 @@ namespace twistedsharp.Internet
             IAsyncResult ar = async_state as IAsyncResult;
             AsyncConnectState state = (AsyncConnectState)ar.AsyncState;
 
-            if (!timedOut)
+            if (!timedOut && state.client.Connected)
                 state.responseCallback(new SSLConnector(state.client, state.factory), state.state);
             else
                 state.timeoutCallback(state.state);
